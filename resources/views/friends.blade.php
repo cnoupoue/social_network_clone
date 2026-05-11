@@ -3,7 +3,7 @@
 @section('content')
     @auth
         @if(isset($friends))
-            <p>My friends</p><hr>
+            <h2 class="section-heading">My friends</h2>
             <table>
                 @foreach($friends as $friend)
                     @if($friend->status == 'confirmed')
@@ -21,7 +21,7 @@
                     @endif
                 @endforeach
             </table>
-            <p>My friends requests</p><hr>
+            <h2 class="section-heading">My friends requests</h2>
             <table>
                 @foreach($friends as $friend)
                     @if($friend->status == 'pending' && $friend->person1 != \Illuminate\Support\Facades\Auth::id())

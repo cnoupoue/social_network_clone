@@ -10,7 +10,7 @@
     <!-- Polices -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Roboto:wght@100;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/img/favicon.png">
     <link rel="stylesheet" type="text/css" href="/styles/social.css">
     <script defer src="script/social.js"></script>
@@ -20,11 +20,23 @@
 @endphp
 <body>
     <header class="topbar">
-        <a href="{{route('index')}}" class="topbar-logo">Network</a>
+        <a href="{{route('index')}}" class="topbar-logo">
+            <span class="brand-mark">N</span>
+            <span>Network</span>
+        </a>
         <nav class="topbar-nav">
             <a href="{{route('auth.login')}}" @class(['active' => str_starts_with($routeName, 'auth.')])>@auth My account @endauth @guest Login @endguest</a>
         </nav>
     </header>
+    <section class="hero">
+        <div class="container hero-inner">
+            <div>
+                <p class="eyebrow">Social space</p>
+                <h1>Share what's alive today.</h1>
+            </div>
+            <a href="{{route('post.create')}}" class="hero-action">Create post</a>
+        </div>
+    </section>
     <div class="container site">
         <nav class="sidebar">
             <a href="{{route('index')}}" @class(['sidebar-home', 'active' => str_starts_with($routeName, 'index')])>News</a>
@@ -48,17 +60,17 @@
             <article class="card">
                 <header class="card-header card-header-avatar">
                     <section>
-                        <img src="/img/icons/avatar.png" width="45" height="45" class="card-avatar">
+                        <img src="/img/icons/avatar.png" width="45" height="45" class="card-avatar" alt="Profile picture">
                     </section>
                     <section>
                         @auth
                         <div class="card-title">{{ Auth::user()->name }}</div>
                         <div class="card-date">Registered since {{Auth::user()->created_at}}</div>
-                        <form method="get" action="{{route('post.create')}}">
+                        <form method="get" action="{{route('post.create')}}" class="side-form">
                             @csrf
                             <button type="submit">New post</button>
                         </form>
-                        <form method="POST" action="{{route('auth.logout')}}">
+                        <form method="POST" action="{{route('auth.logout')}}" class="side-form">
                             @csrf
                             <button type="submit">Logout</button>
                         </form>
@@ -81,7 +93,7 @@
             <div class="friends-list">
                 @foreach($suggestions as $suggest)
                     <div class="friend">
-                        <img src="/img/icons/avatar.png" width="40" height="40">
+                        <img src="/img/icons/avatar.png" width="40" height="40" alt="">
                         <div class="friend-body">
                             <a href="#" class="friend-name">{{ $suggest->name }}</a>
                             @auth

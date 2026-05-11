@@ -23,7 +23,7 @@
                 <p>{{$post->content}}</p>
             </div>
             <footer class="card-footer">
-                <a href="#" class="card-like">{{$post->likes}}</a>
+                <a href="#" class="card-like">{{$post->likes}} likes</a>
                 <a href="#" class="card-comments">252 commentaires</a>
             </footer>
         </article>

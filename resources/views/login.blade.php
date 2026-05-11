@@ -7,7 +7,8 @@
         </div>
     @endif
     @guest
-        <form action="{{route('auth.login')}}" method="post">
+        <div class="auth-grid">
+        <form action="{{route('auth.login')}}" method="post" class="auth-card">
             <div class="imgcontainer">
                 <img src="/img/icons/logo_avatar.png" alt="Avatar" class="avatar">
             </div>
@@ -28,8 +29,8 @@
 
                 <button type="submit" class="button-log">Login</button>
             </div>
-        </form><br>
-        <form action="{{route('auth.register')}}" method="post">
+        </form>
+        <form action="{{route('auth.register')}}" method="post" class="auth-card">
             @csrf
             <h2>Register</h2>
             <div class="container">
@@ -55,9 +56,10 @@
                 <button type="submit" class="button-log">Register</button>
             </div>
         </form>
+        </div>
     @endguest
     @auth
-        <div>
+        <div class="panel">
             <h1>Account information</h1>
             <br>
             <ul>
@@ -66,7 +68,7 @@
             </ul>
         </div>
         @if(isset($posts))
-            <p>My posts</p><hr>
+            <h2 class="section-heading">My posts</h2>
             <table>
                 @foreach($posts as $post)
                     <tr>
@@ -81,9 +83,8 @@
         @endif
         <br>
         @if(isset($notifications))
-            <p>My notifications</p>
+            <h2 class="section-heading">My notifications</h2>
             <button><a href="{{route('notification.read', \Illuminate\Support\Facades\Auth::user())}}">Read all</a></button>
-            <hr>
             <table>
                 @foreach($notifications as $notification)
                     @php
